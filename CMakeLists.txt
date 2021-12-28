@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.1)
+
+project(MCpp VERSION 1.0.0 DESCRIPTION "A Minecraft C++ library")
+
+include(GNUInstallDirs)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED 17)
+set(CMAKE_CXX_EXTENSIONS 17)
+
+set(CMAKE_CXX_FLAGS "-std=gnu++17 ${CMAKE_CXX_FLAGS}")
+
+set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
+set(CMAKE_CURRENT_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/build)
+
+file(GLOB_RECURSE source ./src/*)
+add_library(${PROJECT_NAME} ${source})
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+        PRIVATE src)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+        VERSION ${PROJECT_VERSION}
+        SOVERSION 1)
+
+install(TARGETS ${PROJECT_NAME} EXPORT MCppConfig
+        ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME})
+
+install(EXPORT MCppConfig DESTINATION share/MCpp/cmake)
+
+export(TARGETS ${PROJECT_NAME} FILE MCppConfig.cmake)

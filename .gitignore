@@ -1,0 +1,14 @@
+# Clangd
+.cache/
+
+# IDEA
+.idea/
+cmake-build-debug/
+cmake-build-release/
+
+# VS Code
+.vscode/
+
+# CMake/Build
+build/
+CMakeFiles/
