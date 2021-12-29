@@ -6,48 +6,48 @@ namespace Entity {
     class Entity {
         public:
             int getId() const {
-                return m_id;
+                return l_id;
             }
 
             double getX() const {
-                return m_position.getX();
+                return l_position.getX();
             }
 
             double getY() const {
-                return m_position.getY();
+                return l_position.getY();
             }
 
             double getZ() const {
-                return m_position.getZ();
+                return l_position.getZ();
             }
 
             Vec3 getPosition() const {
-                return m_position;
+                return l_position;
             }
 
             float getYaw() const {
-                return m_yaw;
+                return l_yaw;
             }
 
             float getPitch() const {
-                return m_pitch;
+                return l_pitch;
             }
 
             bool isOnGround() const {
-                return m_onGround;
+                return l_onGround;
             }
 
             float getFallDistance() const {
-                return m_fallDistance;
+                return l_fallDistance;
             }
 
         protected:
-            int m_id;
-            Vec3 m_position;
-            float m_yaw;
-            float m_pitch;
-            bool m_onGround;
-            float m_fallDistance;
-            // World m_world;
+            int l_id;
+            Vec3 l_position;
+            float l_yaw;
+            float l_pitch;
+            bool l_onGround;
+            float l_fallDistance;
+            // World l_world;
     };
 }
